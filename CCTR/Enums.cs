@@ -4,6 +4,7 @@
     {
         m1, m5, m15, m30, h1, h4, d1, w1, M1
     }
+
     static class IntervalValue
     {
         public static int Get(Interval interval)
