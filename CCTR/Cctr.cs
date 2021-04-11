@@ -4,11 +4,14 @@ namespace CCTR
 {
     static class Cctr
     {
-        public static double Operation(Interval interval)
+        public static double Operation(Interval interval, TimeFormat timeFormat)
         {
             DateTimeOffset now = DateTimeOffset.Now;
             DateTimeOffset dt = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0);
             int intervalValue = IntervalValue.Get(interval);
+
+            if (timeFormat == TimeFormat.second)
+                intervalValue *= 60;
 
             double sCurrentTime;
 
@@ -21,7 +24,10 @@ namespace CCTR
                 dt = new DateTime(now.Year, now.Month, 1);
             }
 
-            sCurrentTime = (double)(now.ToUnixTimeSeconds() - dt.ToUnixTimeSeconds()) / 60;
+            sCurrentTime = now.ToUnixTimeSeconds() - dt.ToUnixTimeSeconds();
+
+            if (timeFormat == TimeFormat.minute)
+                sCurrentTime /= 60;
 
             return intervalValue - (sCurrentTime % intervalValue);
         }

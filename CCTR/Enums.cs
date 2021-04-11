@@ -1,5 +1,11 @@
 ﻿namespace CCTR
 {
+    enum TimeFormat
+    {
+        second, 
+        minute
+    }
+
     enum Interval
     {
         m1, m5, m15, m30, h1, h4, d1, w1, M1

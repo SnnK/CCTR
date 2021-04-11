@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace CCTR
 {
@@ -6,9 +7,17 @@ namespace CCTR
     {
         static void Main()
         {
-            int cctrValue = (int)Math.Ceiling(Cctr.Operation(Interval.m15)); // 15-Minute chart
+            int cctrValueMin = (int)Math.Ceiling(Cctr.Operation(Interval.m15, TimeFormat.minute)); // 15-Minute chart
 
-            Console.WriteLine($"After {cctrValue} minutes the candlestick will close.");
+            Console.WriteLine($"After {cctrValueMin} minutes the candlestick will close.");
+
+            while (true)
+            {
+                int cctrValueSec = (int)Cctr.Operation(Interval.m15, TimeFormat.second);
+
+                Console.WriteLine($"After {cctrValueSec} seconds the candlestick will close.");
+                Thread.Sleep(1000);
+            }
         }
     }
 }
