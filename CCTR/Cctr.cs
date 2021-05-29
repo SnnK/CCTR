@@ -13,8 +13,6 @@ namespace CCTR
             if (timeFormat == TimeFormat.second)
                 intervalValue *= 60;
 
-            double sCurrentTime;
-
             if (interval == Interval.w1)
             {
                 dt = DateTimeOffset.Now.StartOfWeek(DayOfWeek.Monday);
@@ -24,7 +22,7 @@ namespace CCTR
                 dt = new DateTime(now.Year, now.Month, 1);
             }
 
-            sCurrentTime = now.ToUnixTimeSeconds() - dt.ToUnixTimeSeconds();
+            double sCurrentTime = now.ToUnixTimeSeconds() - dt.ToUnixTimeSeconds();
 
             if (timeFormat == TimeFormat.minute)
                 sCurrentTime /= 60;
